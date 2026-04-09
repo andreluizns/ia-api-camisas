@@ -7,7 +7,8 @@ import { NextResponse } from "next/server"
 
 const PUBLIC_PATHS = ["/login", "/api/auth", "/chat", "/api/chat"]
 
-// Nome do cookie gerado pelo Better Auth
+// Em HTTPS (produção) o Better Auth usa __Secure- como prefixo automaticamente
+const SESSION_COOKIE_SECURE = "__Secure-better-auth.session_token"
 const SESSION_COOKIE = "better-auth.session_token"
 
 export function middleware(request: NextRequest) {
@@ -19,7 +20,9 @@ export function middleware(request: NextRequest) {
 
   // Verificação leve: cookie presente? Se não, redireciona para login.
   // A validação do role=admin é feita no AdminLayout (Node.js, com Prisma).
-  const sessionCookie = request.cookies.get(SESSION_COOKIE)
+  const sessionCookie =
+    request.cookies.get(SESSION_COOKIE_SECURE) ??
+    request.cookies.get(SESSION_COOKIE)
   if (!sessionCookie?.value) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
