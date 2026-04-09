@@ -1,0 +1,109 @@
+# ─── Backend — Dependências e build ────────────────────────
+
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ─── Backend — Secrets e variáveis de ambiente ─────────────
+
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.test
+!example.env
+
+# ─── Backend — Logs ────────────────────────────────────────
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Backend — Testes e cobertura ──────────────────────────
+
+coverage/
+.nyc_output/
+
+# ─── Admin (Next.js) — Dependências e build ────────────────
+
+admin/node_modules/
+admin/.next/
+admin/out/
+admin/build/
+admin/.turbo/
+admin/*.tsbuildinfo
+admin/next-env.d.ts
+admin/tmp/
+
+# ─── Admin — Secrets e variáveis de ambiente ───────────────
+
+admin/.env
+admin/.env.*
+admin/.env.local
+admin/.env.development
+admin/.env.production
+admin/.env.test
+
+# ─── Admin — Prisma (gerado automaticamente) ────────────────
+
+admin/node_modules/.prisma/
+admin/prisma/migrations/
+
+# ─── Chaves e certificados ─────────────────────────────────
+
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+id_rsa
+id_ed25519
+*.ppk
+
+# ─── Arquivos de credenciais comuns ────────────────────────
+
+credentials.json
+service-account.json
+secrets.json
+secrets.yaml
+secrets.yml
+*secret*
+*credential*
+*password*
+auth.json
+firebase.json
+firebase-adminsdk*.json
+gcloud-credentials.json
+aws-credentials
+.aws/
+
+# ─── OS / Editor ───────────────────────────────────────────
+
+.DS_Store
+.DS_Store?
+Thumbs.db
+Desktop.ini
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# ─── Tooling ───────────────────────────────────────────────
+
+.turbo/
+.vercel/
+.netlify/
+.claude/
+
+# Documentação interna
+docs/
