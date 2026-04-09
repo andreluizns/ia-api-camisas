@@ -10,6 +10,19 @@ Sistema completo para gerenciamento, informação e venda de camisas de times de
 - **Controle de acesso por papéis (RBAC)**: três níveis de permissão com controle granular por usuário
 - **Painel admin protegido**: gerenciamento completo de camisas e usuários, além de relatório de todas as sessões de chat
 
+## Demo
+
+O projeto está disponível na Vercel como demonstração:
+
+| | Link |
+|---|---|
+| **Chat** | [aikscf.vercel.app/chat](https://aikscf.vercel.app/chat) |
+| **Painel Admin** | [aikscf.vercel.app/login](https://aikscf.vercel.app/login) |
+
+**Credenciais de acesso ao admin:**
+- E-mail: `admin@admin.com`
+- Senha: `admin123`
+
 ---
 
 ## Arquitetura
