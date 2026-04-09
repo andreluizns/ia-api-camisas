@@ -67,7 +67,7 @@ function ChartSkeleton() {
       {[100, 80, 65, 55, 40, 35, 25].map((w, i) => (
         <div key={i} className="flex items-center gap-3">
           <Skeleton className="h-3 w-24" />
-          <Skeleton style={{ width: `${w}%`, height: 20 }} />
+          <div style={{ width: `${w}%`, height: 20 }}><Skeleton className="h-full w-full" /></div>
         </div>
       ))}
     </div>
