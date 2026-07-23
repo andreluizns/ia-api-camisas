@@ -1,4 +1,6 @@
-import type { FastifyInstance } from "fastify";
+import { timingSafeEqual } from "node:crypto";
+import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { env } from "../../config/env.js";
 import { CamisasController } from "./camisas.controller.js";
 import { CamisasRepository } from "./camisas.repository.js";
 import {
@@ -15,13 +17,34 @@ const searchAgent = new AiSearchAgentService(repository);
 const service = new CamisasService(repository, searchAgent);
 const controller = new CamisasController(service);
 
+function requireAdminApiKey(request: FastifyRequest, reply: FastifyReply, done: () => void) {
+  const provided = request.headers["x-api-key"];
+  const expected = env.ADMIN_API_KEY;
+
+  const providedBuffer = Buffer.from(typeof provided === "string" ? provided : "");
+  const expectedBuffer = Buffer.from(expected);
+
+  const isValid =
+    providedBuffer.length === expectedBuffer.length &&
+    timingSafeEqual(providedBuffer, expectedBuffer);
+
+  if (!isValid) {
+    reply.status(401).send({ error: "Unauthorized" });
+    return;
+  }
+
+  done();
+}
+
 export async function camisasRoutes(app: FastifyInstance) {
   app.post(
     "/camisas",
     {
+      preHandler: requireAdminApiKey,
       schema: {
         summary: "Criar camisa",
-        description: "Cadastra uma nova camisa de futebol no sistema.",
+        description:
+          "Cadastra uma nova camisa de futebol no sistema. Requer header x-api-key.",
         tags: ["Camisas"],
         body: createCamisaSchema,
         response: {

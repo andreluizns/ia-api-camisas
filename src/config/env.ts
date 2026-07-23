@@ -7,6 +7,8 @@ const envShcema = z.object({
   DATABASE_URL: z.string().min(1),
   GEMINI_API_KEY: z.string().min(1),
   GEMINI_MODEL: z.string().min(1).default("gemini-2.5-flash"),
+  GEMINI_CLASSIFIER_MODEL: z.string().min(1).default("gemini-flash-lite-latest"),
+  ADMIN_API_KEY: z.string().min(1),
 });
 
 const parseEnv = envShcema.safeParse(process.env);
